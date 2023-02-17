@@ -112,6 +112,26 @@ function TForm2.VerificarJogadas(Jog1, Jog2: String): String;
 var
   LGanhador: String;
 begin
+
+  if ((AnsiSameText(Jog1, '')) and (not (AnsiSameText(Jog2, '')))) or
+      (not (AnsiSameText(Jog1, '')) and (AnsiSameText(Jog2, ''))) then
+  begin
+	  ShowMessage('Insira a jogada dos dois jogadores para prosseguir!');
+		Abort();
+  end;
+
+
+  if (AnsiSameText(Jog1, Jog2) and (AnsiSameText(Jog1, Jog2))) then
+  begin
+    ShowMessage('Nenhuma jogada foi selecionada, por favor verifique');
+    Abort();
+  end;
+
+
+  if (AnsiSameText(Jog1, Jog2)) then
+    LGanhador := 'Empate';
+
+
   if ((AnsiSameText(Jog1, 'Pedra') and AnsiSameText(Jog2, 'Papel')) or
       (AnsiSameText(Jog1, 'papel') and AnsiSameText(Jog2, 'Tesoura')) or
       (AnsiSameText(Jog1, 'Tesoura') and AnsiSameText(Jog2, 'Pedra'))) then
@@ -122,27 +142,7 @@ begin
       (AnsiSameText(Jog2, 'Tesoura') and AnsiSameText(Jog1, 'Pedra'))) then
   LGanhador := 'Jogador 1';
 
-
-  if ((AnsiSameText(Jog1, '')) and (not (AnsiSameText(Jog2, '')))) or
-      (not (AnsiSameText(Jog1, '')) and (AnsiSameText(Jog2, ''))) then
-  begin
-    ShowMessage('Insira a jogada dos dois jogadores para prosseguir!');
-    Abort();
-	end;
-
-
-  if (AnsiSameText(Jog1, Jog2) and (AnsiSameText(Jog1, Jog2))) then
-  begin
-    ShowMessage('Nenhuma jogada foi selecionada, por favor verifique');
-    Abort();
-	end;
-
-
-  if (AnsiSameText(Jog1, Jog2)) then
-     LGanhador := 'Empate';
-
   result := LGanhador;
 end;
 
 end.
-
